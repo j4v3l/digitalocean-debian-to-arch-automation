@@ -1,0 +1,9 @@
+# Terraform
+terraform/*.tfstate
+terraform/*.tfstate.backup
+terraform/*.tfvars
+terraform/.terraform/
+
+# .DS_Store
+**/.DS_Store
+**/**/.DS_Store
