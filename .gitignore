@@ -4,6 +4,10 @@ terraform/*.tfstate.backup
 terraform/*.tfvars
 terraform/.terraform/
 
+# Ansible
+ansible/setup.sh
+
 # .DS_Store
 **/.DS_Store
 **/**/.DS_Store
+**/**/**/.DS_Store
