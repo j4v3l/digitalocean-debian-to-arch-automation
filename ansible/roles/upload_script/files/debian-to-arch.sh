@@ -126,6 +126,10 @@ arch_packages=(
   grub
   openssh
   python3 # for digitalocean-synchronize
+  sudo
+  #docker
+  docker-compose
+  vim
 )
 
 gpt1_size_MiB=1
@@ -855,6 +859,8 @@ stage4_convert() {
 
   # we're done!
   sync
+  # echo "Rebooting in 3 minutes..."
+  # sleep 180
   reboot -f
 }
 
