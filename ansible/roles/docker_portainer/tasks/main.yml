@@ -1,0 +1,17 @@
+---
+# tasks file for docker_portainer to copy and execute a shell script
+- name: Copy install_docker_portainer.sh to the server
+  copy:
+    src: "files/install_docker_portainer.sh"
+    dest: /tmp/install_docker_portainer.sh
+    mode: "0755" # Make sure the script is executable
+
+- name: Execute the installation script on the server
+  shell: "/tmp/install_docker_portainer.sh"
+  args:
+    executable: /bin/bash
+  register: script_background
+
+- debug:
+    msg: "Docker and Portainer have been installed successfully!"
+  when: script_background.rc == 0
