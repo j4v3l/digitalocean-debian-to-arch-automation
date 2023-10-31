@@ -1,5 +1,12 @@
 #!/bin/bash
-
+clear
+cat <<"EOF"
+╺┳╸┏━╸┏━┓┏━┓┏━┓┏━╸┏━┓┏━┓┏┳┓   ╻ ╻┏━╸╻  ┏━┓┏━╸┏━┓
+ ┃ ┣╸ ┣┳┛┣┳┛┣━┫┣╸ ┃ ┃┣┳┛┃┃┃╺━╸┣━┫┣╸ ┃  ┣━┛┣╸ ┣┳┛
+ ╹ ┗━╸╹┗╸╹┗╸╹ ╹╹  ┗━┛╹┗╸╹ ╹   ╹ ╹┗━╸┗━╸╹  ┗━╸╹┗╸
+EOF
+echo "by J4V3L (2023)"
+echo "-----------------------------------------------------"
 # Define the path to the inventory file, transformation script, and Terraform directory
 TERRAFORM_DIR="terraform/"
 INVENTORY_FILE="ansible/inventory.ini"

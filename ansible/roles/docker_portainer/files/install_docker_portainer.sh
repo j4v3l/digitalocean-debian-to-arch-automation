@@ -1,5 +1,12 @@
 #!/bin/bash
-
+clear
+cat <<"EOF"
+╻ ╻┏━╸╻  ┏━┓┏━╸┏━┓ 
+┣━┫┣╸ ┃  ┣━┛┣╸ ┣┳┛ 
+╹ ╹┗━╸┗━╸╹  ┗━╸╹┗╸ 
+EOF
+echo "by J4V3L (2023)"
+echo "-----------------------------------------------------"
 # Ensure the script is run as root
 if [ "$EUID" -ne 0 ]; then
   echo "Please run as root"
