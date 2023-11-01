@@ -1,7 +1,7 @@
 do_token             = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 droplet_name         = "devOps"
 image_name           = "debian-10-x64"
-ssh_source_addresses = ["76.111.234.88/32"] # Replace with your actual IP if needed
+ssh_source_addresses = ["0.0.0.0/32"] # Replace with your actual IP if needed
 volume_size          = 20
 firewall_name        = "devOps"
 filesystem_type      = "ext4"
