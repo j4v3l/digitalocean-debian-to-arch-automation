@@ -14,8 +14,8 @@ provider "digitalocean" {
 
 module "ssh_key" {
   source         = "./modules/ssh_key"
-  ssh_key_name   = "my-ssh-key"
-  ssh_key_public = file("~/.ssh/id_rsa.pub")
+  ssh_key_name   = var.ssh_key_name
+  ssh_key_public = file(var.ssh_key_path)
 }
 
 module "debian_droplet" {
@@ -25,25 +25,30 @@ module "debian_droplet" {
   region       = var.region
   image_name   = var.image_name
   ssh_key_id   = module.ssh_key.ssh_key_id
+  droplet_id   = module.debian_droplet.droplet_id_output
 }
 
-# module "volume" {
-#   source             = "./modules/volume"
-#   volume_name        = "debian-volume"
-#   region             = var.region
-#   volume_size        = 20 # Example size, or pass through a variable
-#   filesystem_type    = "ext4"
-#   filesystem_label   = "storage"
-#   volume_description = "debian-volume"
-#   droplet_id         = module.debian_droplet.droplet_ip
-# }
+module "volume" {
+  source             = "./modules/volume"
+  volume_name        = "storage"
+  region             = var.region
+  volume_size        = var.volume_size
+  filesystem_type    = var.filesystem_type
+  filesystem_label   = var.filesystem_label
+  volume_description = var.volume_description
+  droplet_id         = module.debian_droplet.droplet_id_output
+}
 
-# module "networking" {
-#   source               = "./modules/networking"
-#   firewall_name        = "my-firewall"
-#   droplet_ids          = [module.debian_droplet.droplet_ip] # Assuming the droplet module outputs the droplet ID
-#   ssh_port_range       = "22"
-#   ssh_source_addresses = ["0.0.0.0/0"] # Replace with your actual IP if needed
-# }
+module "networking" {
+  source               = "./modules/networking"
+  firewall_name        = var.firewall_name
+  droplet_ids          = [module.debian_droplet.droplet_id_output]
+  ssh_port_range       = var.ssh_port_range
+  ssh_source_addresses = var.ssh_source_addresses
+}
 
 
+resource "digitalocean_volume_attachment" "debian_volume" {
+  droplet_id = module.debian_droplet.droplet_id_output
+  volume_id  = module.volume.volume_id
+}

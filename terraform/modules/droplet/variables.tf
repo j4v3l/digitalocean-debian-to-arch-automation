@@ -23,8 +23,7 @@ variable "size" {
   type        = string
 }
 
-# variable "volume_size" {
-#   description = "Size of the attached volume in GiB"
-#   type        = number
-#   default     = 20
-# }
+variable "droplet_id" {
+  description = "The ID of the droplet the volume will be attached to"
+  type        = string
+}
